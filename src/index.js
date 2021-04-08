@@ -3,10 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import setupMockServer from "./api/mock.server";
+import { CartContextProvider } from './context/cartContextProvider';
+
+setupMockServer();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <CartContextProvider>
+      <App />
+    </CartContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import {Home} from './components/Home/Home';
+import {Navbar} from './components/Navbar/Navbar';
+import {useState} from 'react';
+import {Cart} from './components/Cart/Cart';
+import {useDataContext} from './context/cartContextProvider';
+import {WishList} from './components/WishList/WishList';
 
 function App() {
+
+  const {state} = useDataContext();
+  const {route} = state;
+  const [input, setInput] = useState('');
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar setInput={setInput}/>
+      {route === "HOME" && <Home input={input}/>}
+      {route === "CART" && <Cart />}
+      {route === "WISHLIST" && <WishList />}
     </div>
   );
 }
