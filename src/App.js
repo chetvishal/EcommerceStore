@@ -5,11 +5,12 @@ import { Cart } from './pages/Cart/Cart';
 import { useDataContext } from './context/cartContextProvider';
 import { WishList } from './pages/WishList/WishList';
 import { Route, Routes } from 'react-router-dom';
+import {Toast} from './components/Toast/Toast';
 
 function App() {
 
   const { state } = useDataContext();
-  const { route } = state;
+  const { toast } = state;
   const [input, setInput] = useState('');
 
   return (
@@ -20,6 +21,8 @@ function App() {
           <Route path="/wishlist" element={<WishList />} />
           <Route path="/cart" element={<Cart />} />
       </Routes>
+      {toast.visible && <Toast text={toast.text} />}
+      
     </div>
   );
 }

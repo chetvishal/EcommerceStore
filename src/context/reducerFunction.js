@@ -50,6 +50,8 @@ export const reducerFunction = (state, action) => {
             }
         case 'SET_ROUTE':
             return { ...state, route: action.payload }
+        case 'SET_TOAST': 
+            return {...state, toast: {visible: action.payload.visible, text: action.payload.text}}
         default:
             return state;
     }

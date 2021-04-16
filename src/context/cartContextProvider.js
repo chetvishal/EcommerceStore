@@ -35,6 +35,12 @@ export const CartContextProvider = ({ children }) => {
             .catch(err => console.log('error while fetching resources: ', err))
     }
 
+    const removeToast = () => {
+        setTimeout(()=>{
+            dispatch({ type: 'SET_TOAST', payload:{visible: false, text: ""}  })
+        }, 5000)
+    }
+
     const updateServer = async (action, payload) => {
         switch (action) {
             case 'ADD_TO_CART': {
@@ -43,6 +49,8 @@ export const CartContextProvider = ({ children }) => {
                 }).then(response => {
                     // console.log("from cart context provider", response)
                     dispatch({ type: 'ADD_TO_CART', payload: response.data.cartList })
+                    dispatch({ type: 'SET_TOAST', payload:{visible: true, text: "Successfully added"}  })
+                    removeToast();
                 }).catch(error => {
                     console.log("from cart context provider", error)
                 })
@@ -52,6 +60,8 @@ export const CartContextProvider = ({ children }) => {
                 await axios.delete(`/api/cartLists/${payload.id}`).then(response => {
                     console.log(response);
                     dispatch({ type: 'REMOVE_FROM_CART', payload: payload });
+                    dispatch({ type: 'SET_TOAST', payload:{visible: true, text: "Successfully Removed"}  })
+                    removeToast();
                 }).catch(error => console.log('error removing from wishlist: ', error));
                 break;
             }
@@ -61,6 +71,8 @@ export const CartContextProvider = ({ children }) => {
                 }).then(response => {
                     // console.log("from cart context provider", response.data.wishList)
                     dispatch({ type: 'ADD_TO_WISHLIST', payload: response.data.wishList })
+                    dispatch({ type: 'SET_TOAST', payload:{visible: true, text: "Successfully Added to Wishlist"}  })
+                    removeToast();
                 }).catch(error => {
                     console.log("from cart context provider", error)
                 })
@@ -70,6 +82,8 @@ export const CartContextProvider = ({ children }) => {
                 await axios.delete(`/api/wishLists/${payload.id}`).then(response => {
                     console.log(response);
                     dispatch({ type: 'REMOVE_FROM_WISHLIST', payload: payload });
+                    dispatch({ type: 'SET_TOAST', payload:{visible: true, text: "Successfully Removed from Wishlist"}  })
+                    removeToast();
                 }).catch(error => console.log('error removing from wishlist: ', error));
                 break;
             }
@@ -82,6 +96,8 @@ export const CartContextProvider = ({ children }) => {
                 }).then(response => {
                     console.log(response);
                     dispatch({ type: 'INCREASE_CART_QTY', payload: payload });
+                    dispatch({ type: 'SET_TOAST', payload:{visible: true, text: "Successfully increased quantity"}  })
+                    removeToast();
                 }).catch(err => console.log(err))
                 break;
             }
@@ -94,6 +110,8 @@ export const CartContextProvider = ({ children }) => {
                 }).then(response => {
                     console.log(response);
                     dispatch({ type: 'DECREASE_CART_QTY', payload: payload });
+                    dispatch({ type: 'SET_TOAST', payload:{visible: true, text: "Successfully decreased quantity"}  })
+                    removeToast();
                 }).catch(err => console.log(err))
                 break;
             }
@@ -114,7 +132,7 @@ export const CartContextProvider = ({ children }) => {
         showFastDelivery: false,
         cart: [],
         wishList: [],
-        route: "HOME"
+        toast: {visible: false, text: "test"}
     });
 
     return (
