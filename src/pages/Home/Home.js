@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card } from '../Card/Card';
+import { Card } from '../../components/Card/Card';
 import { useDataContext } from '../../context/cartContextProvider';
 import './Home.css';
 
@@ -42,6 +42,8 @@ export const Home = ({ input }) => {
 
     const sortedData = sortData(state.products, state.sort);
     const FilteredData = getFilteredData(sortedData, state);
+
+    console.log(window.location.href);
 
     return (
         <div className="home">

@@ -5,14 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import setupMockServer from "./api/mock.server";
 import { CartContextProvider } from './context/cartContextProvider';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 setupMockServer();
 
 ReactDOM.render(
   <React.StrictMode>
-    <CartContextProvider>
-      <App />
-    </CartContextProvider>
+    <Router>
+      <CartContextProvider>
+        <App />
+      </CartContextProvider>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

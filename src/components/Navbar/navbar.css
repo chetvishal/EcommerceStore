@@ -1,4 +1,4 @@
-@import url("../colors.css");
+@import url("../CSS/colors.css");
 
 header {
   position: relative;
@@ -47,25 +47,21 @@ header {
 
 .nav-list li:hover {
   cursor: pointer;
-  /* color: black; */
   text-decoration: underline;
 }
 
 .nav-inputbox {
   border: none;
-  /* direction: rtl; */
   text-align: right;
   margin-right: 10px;
 }
 
 .nav-inputbox:focus {
   outline: none;
-  /* border-bottom: 1px solid black; */
 }
 
 .search-box:focus-within {
   border-bottom: 1px solid black;
-  /* border-radius: 10px; */
 }
 
 .nav-icon-label {

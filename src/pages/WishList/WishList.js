@@ -1,5 +1,5 @@
 import { useDataContext } from '../../context/cartContextProvider';
-import { Card } from '../Card/Card';
+import { Card } from '../../components/Card/Card';
 import './wishlist.css';
 
 export const WishList = () => {
