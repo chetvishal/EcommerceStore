@@ -35,7 +35,7 @@ export const Card = (props) => {
                         <span className="util-gray-text util-small-text"> {props.data.offer}</span>
                     </p>
                 </div>
-                <div className="add-to-cart" style={{ cursor: props.data.inStock ? 'pointer' : "not-allowed" }}>
+                <div className="add-to-cart" style={{ display: props.data.inStock ? '' : "none" }}>
                     <Link to={props.data.inCart ? '/cart' : ''}>
                         <FontAwesomeIcon icon={faShoppingCart} style={{ fontSize: "0.85rem", border: "0.4px solid #5d5d5d", padding: "0.5rem", borderRadius: "50%", color: "#5d5d5d", pointerEvents: props.data.inStock ? "auto" : "none" }}
                             onClick={() => {
