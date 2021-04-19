@@ -5,12 +5,12 @@ import './Home.css';
 
 export const Home = ({ input }) => {
 
-    const { state, dispatch, updateServer, fetchResource } = useDataContext();
+    const { state, dispatch } = useDataContext();
+    const { cart , wishList } = state;
     const [sliderVal, setSliderVal] = useState(989);
-    console.log('ITS INPUT', input);
 
     const handleDropDownChange = (e) => {
-        console.log(e.target.value);
+        // console.log(e.target.value);
         dispatch({ type: "SORT", payload: e.target.value })
     }
 
@@ -18,6 +18,19 @@ export const Home = ({ input }) => {
         // e.preventDefault();
         setSliderVal(() => e.target.value);
     }
+
+    const inCartAndWishList = (itemArr) => {
+
+        const newArr = itemArr.map(item => {
+            return {
+                ...item, 
+                inCart: cart.find(cartItem => cartItem.id === item.id ) ? true : false,
+                inWishList: wishList.find(wishItem => wishItem.id === item.id) ? true : false 
+            }
+    })
+        return newArr;
+    }
+    // console.log("checking inCartAndWishList: ",inCartAndWishList(state.products))
 
     //Function to sort products array
     const sortData = (itemArr, sort) => {
@@ -40,10 +53,9 @@ export const Home = ({ input }) => {
         return newArr;
     };
 
-    const sortedData = sortData(state.products, state.sort);
+    const checkData = inCartAndWishList(state.products)
+    const sortedData = sortData(checkData, state.sort);
     const FilteredData = getFilteredData(sortedData, state);
-
-    console.log(window.location.href);
 
     return (
         <div className="home">
@@ -68,25 +80,7 @@ export const Home = ({ input }) => {
                 </span>
                 <br />
                 <br />
-                
 
-                {/* <input
-                    type="radio"
-                    id="high"
-                    name="pricesort"
-                    value="SORT_LOW"
-                    onChange={() => dispatch({ type: "SORT", payload: "ascending" })}
-                />
-                <label for="high">Price: High to low</label>
-
-                <input
-                    type="radio"
-                    id="low"
-                    name="pricesort"
-                    value="SORT_HIGH"
-                    onChange={() => dispatch({ type: "SORT", payload: "descending" })}
-                />
-                <label for="low">Price: Low to High</label> */}
                 <span className="util-heading-small">Range</span>
                 <input type="range" min={15} max={989} value={sliderVal} className="slider filter-element" onChange={handleSlider} ></input> ₹{sliderVal}
                 
@@ -99,26 +93,20 @@ export const Home = ({ input }) => {
                         checked={state.showInventoryAll}
                         onChange={() => dispatch({ type: "TOGGLE_INVENTORY" })}
                     />
-             Include out of stock
+                    Include out of stock
                 </label>
                 <label className="filter-checkbox-container filter-element">
                     <input
-
                         type="checkbox"
                         checked={state.showFastDelivery}
                         onChange={() => dispatch({ type: "TOGGLE_DELIVERY" })}
                     />
                      Fast delivery only
                     </label>
-                
             </div>
 
             <div className="products-list">
-
-                {/* <h2>Purchase Items</h2> */}
-                {/* <div> */}
                 {FilteredData.map(i => i.name.toLowerCase().includes(input.toLowerCase()) && i.price < Number(sliderVal) ? <Card key={i.id} data={i} /> : null)}
-                {/* </div> */}
             </div>
         </div>
     )

@@ -5,6 +5,7 @@ import { useDataContext } from '../../context/cartContextProvider';
 export const CartCard = (props) => {
 
     const { dispatch, updateServer } = useDataContext();
+    // console.log("from cartCart: ",props.data);
 
     return (
         <div className="cart-card">
@@ -13,7 +14,8 @@ export const CartCard = (props) => {
                 <div>
                     <button
                         onClick={() => {
-                            updateServer('INCREASE_CART_QTY', props.data)
+                            updateServer('INCREASE_CART_QTY', {id: props.data.id, qty: props.data.qty})
+                            // dispatch({type: 'INCREASE_CART_QTY', payload: {id: props.data.id }})
                         }}
                         className="cart-qty-btn"
                     >+</button>
@@ -21,8 +23,11 @@ export const CartCard = (props) => {
                     <button
                         onClick={() => {
                             props.data.qty === 1 ?
-                                updateServer('REMOVE_FROM_CART', props.data) :
-                                updateServer('DECREASE_CART_QTY', props.data)
+                                updateServer('REMOVE_FROM_CART', {id: props.data.id}) 
+                                // dispatch({type: 'REMOVE_FROM_CART', payload: { id: props.data.id }})
+                                :
+                                updateServer('DECREASE_CART_QTY', {id: props.data.id, qty: props.data.qty})
+                                // dispatch({type: 'DECREASE_CART_QTY', payload: { id: props.data.id }})
                         }}
                         className="cart-qty-btn"
                     >-</button>

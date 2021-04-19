@@ -16,8 +16,8 @@ export const reducerFunction = (state, action) => {
             return {
                 ...state,
                 cart: [...state.cart, { ...action.payload, qty: 1 }],
-                products: state.products.map(i => i.id === action.payload.id ? { ...i, inCart: true } : i),
-                wishList: state.wishList.map(i => i.id === action.payload.id ? { ...i, inCart: true } : i)
+                // products: state.products.map(i => i.id === action.payload.id ? { ...i, inCart: true } : i),
+                // wishList: state.wishList.map(i => i.id === action.payload.id ? { ...i, inCart: true } : i)
             }
         case 'INCREASE_CART_QTY':
             return {
@@ -33,20 +33,21 @@ export const reducerFunction = (state, action) => {
             return {
                 ...state,
                 cart: state.cart.filter(i => i.id !== action.payload.id),
-                products: state.products.map(i => i.id === action.payload.id ? { ...i, inCart: false } : i),
-                wishList: state.wishList.map(i => i.id === action.payload.id ? { ...i, inCart: false } : i)
+                // products: state.products.map(i => i.id === action.payload.id ? { ...i, inCart: false } : i),
+                // wishList: state.wishList.map(i => i.id === action.payload.id ? { ...i, inCart: false } : i)
             }
         case 'ADD_TO_WISHLIST':
             return {
                 ...state,
-                wishList: [...state.wishList, { ...action.payload, inWishList: true }],
-                products: state.products.map(i => i.id === action.payload.id ? { ...i, inWishList: true } : i)
+                wishList: [...state.wishList, { ...action.payload }],
+                // wishList: [...state.wishList, { ...action.payload, inWishList: true }],
+                // products: state.products.map(i => i.id === action.payload.id ? { ...i, inWishList: true } : i)
             }
         case 'REMOVE_FROM_WISHLIST':
             return {
                 ...state,
                 wishList: state.wishList.filter(i => i.id !== action.payload.id),
-                products: state.products.map(i => i.id === action.payload.id ? { ...i, inWishList: false } : i)
+                // products: state.products.map(i => i.id === action.payload.id ? { ...i, inWishList: false } : i)
             }
         case 'SET_ROUTE':
             return { ...state, route: action.payload }

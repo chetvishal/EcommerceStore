@@ -7,7 +7,7 @@ import setupMockServer from "./api/mock.server";
 import { CartContextProvider } from './context/cartContextProvider';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-setupMockServer();
+// setupMockServer();
 
 ReactDOM.render(
   <React.StrictMode>

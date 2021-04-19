@@ -24,8 +24,7 @@ export const Navbar = ({ setInput }) => {
                         <FontAwesomeIcon icon={faSearch} />
                     </li>
                     <li>
-                        <a href="#"
-                            onClick={() => dispatch({ type: 'SET_ROUTE', payload: "HOME" })}>
+                        <a href="#">
                             <Link to="/">
                                 <span class="icon-badge">
                                     <i style={{ fontStyle: "normal" }}>

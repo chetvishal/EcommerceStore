@@ -6,7 +6,7 @@ import { useDataContext } from '../../context/cartContextProvider';
 import { Link } from 'react-router-dom';
 export const Card = (props) => {
 
-    console.log(props)
+    // console.log(props)
 
     const { dispatch, updateServer } = useDataContext();
 
@@ -19,8 +19,11 @@ export const Card = (props) => {
                     <FontAwesomeIcon icon={faHeart} style={{ color: props.data.inWishList ? '#ff5656' : '#b8b4b6', padding: "0.3rem", borderRadius: "50%", fontSize: "1rem" }}
                         onClick={() => {
                             props.data.inWishList ?
-                                updateServer('REMOVE_FROM_WISHLIST', props.data) :
-                                updateServer('ADD_TO_WISHLIST', props.data)
+                                updateServer('REMOVE_FROM_WISHLIST', {id: props.data.id}) 
+                                // dispatch({type: 'REMOVE_FROM_WISHLIST', payload: {id: props.data.id}})
+                                :
+                                // dispatch({type: 'ADD_TO_WISHLIST', payload:{id: props.data.id}})
+                                updateServer('ADD_TO_WISHLIST', {id: props.data.id})
                         }} />
                 </span>
             </div>
@@ -37,7 +40,8 @@ export const Card = (props) => {
                         <FontAwesomeIcon icon={faShoppingCart} style={{ fontSize: "0.85rem", border: "0.4px solid #5d5d5d", padding: "0.5rem", borderRadius: "50%", color: "#5d5d5d", pointerEvents: props.data.inStock ? "auto" : "none" }}
                             onClick={() => {
                                 props.data.inCart ? dispatch({ type: 'SET_ROUTE', payload: 'CART' }) :
-                                    updateServer('ADD_TO_CART', props.data)
+                                    // dispatch({type: 'ADD_TO_CART', payload: {id: props.data.id}})
+                                    updateServer('ADD_TO_CART', {id: props.data.id})
                             }}
                         />
                     </Link>
