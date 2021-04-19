@@ -15,7 +15,7 @@ export const Navbar = ({ setInput }) => {
             <input type="checkbox" id="nav-toggle" class="nav-toggle" />
             <nav class="navbar">
                 <a href="#" class="nav-logo"
-                ><Link to="/">NEXT STORE</Link></a>
+                ><Link to="/">Kicks</Link></a>
                 <ul class="nav-list">
                     <li className="search-box">
                         <input type="text" onChange={e => setInput(e.target.value)} className="nav-inputbox" placeholder="Search "

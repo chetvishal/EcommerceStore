@@ -22,17 +22,17 @@ export const reducerFunction = (state, action) => {
         case 'INCREASE_CART_QTY':
             return {
                 ...state,
-                cart: state.cart.map(i => i.id === action.payload.id ? { ...i, qty: i.qty + 1 } : i)
+                cart: state.cart.map(i => i._id === action.payload._id ? { ...i, qty: i.qty + 1 } : i)
             }
         case 'DECREASE_CART_QTY':
             return {
                 ...state,
-                cart: state.cart.map(i => i.id === action.payload.id ? { ...i, qty: i.qty - 1 } : i)
+                cart: state.cart.map(i => i._id === action.payload._id ? { ...i, qty: i.qty - 1 } : i)
             }
         case 'REMOVE_FROM_CART':
             return {
                 ...state,
-                cart: state.cart.filter(i => i.id !== action.payload.id),
+                cart: state.cart.filter(i => i._id !== action.payload._id),
                 // products: state.products.map(i => i.id === action.payload.id ? { ...i, inCart: false } : i),
                 // wishList: state.wishList.map(i => i.id === action.payload.id ? { ...i, inCart: false } : i)
             }
@@ -46,7 +46,7 @@ export const reducerFunction = (state, action) => {
         case 'REMOVE_FROM_WISHLIST':
             return {
                 ...state,
-                wishList: state.wishList.filter(i => i.id !== action.payload.id),
+                wishList: state.wishList.filter(i => i._id !== action.payload._id),
                 // products: state.products.map(i => i.id === action.payload.id ? { ...i, inWishList: false } : i)
             }
         case 'SET_ROUTE':

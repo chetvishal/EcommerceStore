@@ -12,8 +12,8 @@ export const WishList = () => {
         const newArr = itemArr.map(item => {
             return {
                 ...item,
-                inCart: cart.find(cartItem => cartItem.id === item.id) ? true : false,
-                inWishList: wishList.find(wishItem => wishItem.id === item.id) ? true : false
+                inCart: cart.find(cartItem => cartItem._id === item._id) ? true : false,
+                inWishList: wishList.find(wishItem => wishItem._id === item._id) ? true : false
             }
         })
         return newArr;
@@ -25,7 +25,7 @@ export const WishList = () => {
         <div className="wishListComponent">
             <span className="util-heading-medium">WISHLIST</span>
             <div className="wishList">
-                {finalList.map(i => i.inWishList ? <Card key={i.id} data={i} /> : null)}
+                {finalList.map(i => i.inWishList ? <Card key={i._id} data={i} /> : null)}
             </div>
         </div>
     )

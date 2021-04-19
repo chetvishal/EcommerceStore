@@ -24,8 +24,8 @@ export const Home = ({ input }) => {
         const newArr = itemArr.map(item => {
             return {
                 ...item, 
-                inCart: cart.find(cartItem => cartItem.id === item.id ) ? true : false,
-                inWishList: wishList.find(wishItem => wishItem.id === item.id) ? true : false 
+                inCart: cart.find(cartItem => cartItem._id === item._id ) ? true : false,
+                inWishList: wishList.find(wishItem => wishItem._id === item._id) ? true : false 
             }
     })
         return newArr;
@@ -106,7 +106,7 @@ export const Home = ({ input }) => {
             </div>
 
             <div className="products-list">
-                {FilteredData.map(i => i.name.toLowerCase().includes(input.toLowerCase()) && i.price < Number(sliderVal) ? <Card key={i.id} data={i} /> : null)}
+                {FilteredData.map(i => i.name.toLowerCase().includes(input.toLowerCase()) && i.price < Number(sliderVal) ? <Card key={i._id} data={i} /> : null)}
             </div>
         </div>
     )

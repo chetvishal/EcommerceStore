@@ -14,7 +14,7 @@ export const CartCard = (props) => {
                 <div>
                     <button
                         onClick={() => {
-                            updateServer('INCREASE_CART_QTY', {id: props.data.id, qty: props.data.qty})
+                            updateServer('INCREASE_CART_QTY', {_id: props.data._id, qty: props.data.qty})
                             // dispatch({type: 'INCREASE_CART_QTY', payload: {id: props.data.id }})
                         }}
                         className="cart-qty-btn"
@@ -23,10 +23,10 @@ export const CartCard = (props) => {
                     <button
                         onClick={() => {
                             props.data.qty === 1 ?
-                                updateServer('REMOVE_FROM_CART', {id: props.data.id}) 
+                                updateServer('REMOVE_FROM_CART', {_id: props.data._id}) 
                                 // dispatch({type: 'REMOVE_FROM_CART', payload: { id: props.data.id }})
                                 :
-                                updateServer('DECREASE_CART_QTY', {id: props.data.id, qty: props.data.qty})
+                                updateServer('DECREASE_CART_QTY', {_id: props.data._id, qty: props.data.qty})
                                 // dispatch({type: 'DECREASE_CART_QTY', payload: { id: props.data.id }})
                         }}
                         className="cart-qty-btn"

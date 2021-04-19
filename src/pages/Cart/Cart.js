@@ -13,7 +13,7 @@ export const Cart = () => {
 
     const checkItemInCart = (itemArr) => {
         return itemArr.map(item => {
-            const findItem = cart.find(cartItem => cartItem.id === item.id)
+            const findItem = cart.find(cartItem => cartItem._id === item._id)
             return findItem ?
                 {
                     ...item,
@@ -34,7 +34,7 @@ export const Cart = () => {
             <div className="cart">
                 <div className="cartList">
                     {cartList.map(i => {
-                        return i.inCart ? <CartCard key={i.id} data={i} /> : null
+                        return i.inCart ? <CartCard key={i._id} data={i} /> : null
                     })}
                 </div>
                 <div className="cartDetails" style={{ display: state.cart.length ? 'block' : 'none' }}>

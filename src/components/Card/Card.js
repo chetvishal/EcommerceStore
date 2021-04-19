@@ -19,11 +19,11 @@ export const Card = (props) => {
                     <FontAwesomeIcon icon={faHeart} style={{ color: props.data.inWishList ? '#ff5656' : '#b8b4b6', padding: "0.3rem", borderRadius: "50%", fontSize: "1rem" }}
                         onClick={() => {
                             props.data.inWishList ?
-                                updateServer('REMOVE_FROM_WISHLIST', {id: props.data.id}) 
+                                updateServer('REMOVE_FROM_WISHLIST', {_id: props.data._id}) 
                                 // dispatch({type: 'REMOVE_FROM_WISHLIST', payload: {id: props.data.id}})
                                 :
                                 // dispatch({type: 'ADD_TO_WISHLIST', payload:{id: props.data.id}})
-                                updateServer('ADD_TO_WISHLIST', {id: props.data.id})
+                                updateServer('ADD_TO_WISHLIST', {_id: props.data._id})
                         }} />
                 </span>
             </div>
@@ -41,7 +41,7 @@ export const Card = (props) => {
                             onClick={() => {
                                 props.data.inCart ? dispatch({ type: 'SET_ROUTE', payload: 'CART' }) :
                                     // dispatch({type: 'ADD_TO_CART', payload: {id: props.data.id}})
-                                    updateServer('ADD_TO_CART', {id: props.data.id})
+                                    updateServer('ADD_TO_CART', {_id: props.data._id})
                             }}
                         />
                     </Link>
