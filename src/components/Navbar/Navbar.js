@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import './navbar.css';
 import '../CSS/badge.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,10 +9,15 @@ import { Link } from 'react-router-dom';
 export const Navbar = ({ setInput }) => {
 
     const { state, dispatch } = useDataContext();
+    const check = useRef(null);
+
+    const handleCheck = () => check.current.checked = false;
 
     return (
         <header>
-            <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+            <input type="checkbox" id="nav-toggle" class="nav-toggle"
+                ref={check}
+            />
             <nav class="navbar">
                 <a href="#" class="nav-logo"
                 ><Link to="/">Kicks</Link></a>
@@ -24,7 +29,9 @@ export const Navbar = ({ setInput }) => {
                         <FontAwesomeIcon icon={faSearch} />
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#"
+                            onClick={handleCheck}
+                        >
                             <Link to="/">
                                 <span class="icon-badge">
                                     <i style={{ fontStyle: "normal" }}>
@@ -37,7 +44,8 @@ export const Navbar = ({ setInput }) => {
                     </li>
                     <li>
                         <a href="#"
-                            onClick={() => dispatch({ type: 'SET_ROUTE', payload: "CART" })}>
+                            onClick={handleCheck}
+                        >
                             <Link to="cart">
                                 <span class="icon-badge">
                                     <i style={{ fontStyle: "normal" }}>
@@ -51,16 +59,19 @@ export const Navbar = ({ setInput }) => {
                     </li>
                     <li>
                         <a href="#"
-                            onClick={() => dispatch({ type: 'SET_ROUTE', payload: "WISHLIST" })}>
-                            <Link to="wishlist">
-                                <span class="icon-badge">
-                                    <i style={{ fontStyle: "normal" }}>
-                                        <FontAwesomeIcon icon={faHeart} />
-                                        {/* {state.wishList.length } */}
-                                        <span className="nav-icon-label">Wishlist</span>
-                                        <span class="avatar-badge-notification-icon" style={{ display: state.wishList.length ? 'inline' : 'none' }}><span className="notification-value"> {state.wishList.length}</span></span></i>
-                                </span>
-                            </Link>
+                            onClick={handleCheck}
+                        >
+                            <label for="nav-toggle">
+                                <Link to="wishlist">
+                                    <span class="icon-badge">
+                                        <i style={{ fontStyle: "normal" }}>
+                                            <FontAwesomeIcon icon={faHeart} />
+                                            {/* {state.wishList.length } */}
+                                            <span className="nav-icon-label">Wishlist</span>
+                                            <span class="avatar-badge-notification-icon" style={{ display: state.wishList.length ? 'inline' : 'none' }}><span className="notification-value"> {state.wishList.length}</span></span></i>
+                                    </span>
+                                </Link>
+                            </label>
                         </a>
                     </li>
                 </ul>
