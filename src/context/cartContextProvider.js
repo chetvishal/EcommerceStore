@@ -10,17 +10,17 @@ export const CartContextProvider = ({ children }) => {
     useEffect(() => {
         async function getData() {
 
-            await axios.get('http://localhost:8000/products').then((resp) => {
+            await axios.get('https://warm-hamlet-04033.herokuapp.com/products').then((resp) => {
                 // console.log('from context', resp)
                 dispatch({ type: 'ADD_PRODUCTS_FROM_SERVER', payload: resp.data.products });
             }).catch(err => alert('failed to fetch data from server: ', err));
 
-            await axios.get('http://localhost:8000/cart').then((resp) => {
+            await axios.get('https://warm-hamlet-04033.herokuapp.com/cart').then((resp) => {
                 // console.log("from cart context",resp.data.cart)
                 dispatch({ type: 'ADD_CART_FROM_SERVER', payload: resp.data.cart });
             }).catch(err => console.log(err));
 
-            await axios.get('http://localhost:8000/wishlist').then((resp) => {
+            await axios.get('https://warm-hamlet-04033.herokuapp.com/wishlist').then((resp) => {
                 // console.log("from wishlist context",resp.data.wishlist)
                 dispatch({ type: 'ADD_WISHLIST_FROM_SERVER', payload: resp.data.wishlist });
             }).catch(err => alert('failed to fetch data from server: (cartList)', err));
@@ -38,7 +38,7 @@ export const CartContextProvider = ({ children }) => {
     const updateServer = async (action, payload) => {
         switch (action) {
             case 'ADD_TO_CART': {
-                await axios.post('http://localhost:8000/cart', {
+                await axios.post('https://warm-hamlet-04033.herokuapp.com/cart', {
                     ...payload,
                     qty: 1
                 }).then(response => {
@@ -55,7 +55,7 @@ export const CartContextProvider = ({ children }) => {
                 break;
             }
             case 'REMOVE_FROM_CART': {
-                await axios.delete(`http://localhost:8000/cart`, {
+                await axios.delete(`https://warm-hamlet-04033.herokuapp.com/cart`, {
                     headers: {
                         'Content-Type': 'application/json',
                     },
@@ -72,7 +72,7 @@ export const CartContextProvider = ({ children }) => {
                 break;
             }
             case 'ADD_TO_WISHLIST': {
-                await axios.post('http://localhost:8000/wishlist', {
+                await axios.post('https://warm-hamlet-04033.herokuapp.com/wishlist', {
                     ...payload
                 }).then(response => {
                     if (response.status == 201) {
@@ -88,7 +88,7 @@ export const CartContextProvider = ({ children }) => {
                 break;
             }
             case 'REMOVE_FROM_WISHLIST': {
-                await axios.delete('http://localhost:8000/wishlist', {
+                await axios.delete('https://warm-hamlet-04033.herokuapp.com/wishlist', {
                     headers: {
                         'Content-Type': 'application/json',
                     },
@@ -105,7 +105,7 @@ export const CartContextProvider = ({ children }) => {
                 break;
             }
             case 'INCREASE_CART_QTY': {
-                await axios.patch(`http://localhost:8000/cart`, {
+                await axios.patch(`https://warm-hamlet-04033.herokuapp.com/cart`, {
                     ...payload,
                     qty: payload.qty + 1
                 }).then(response => {
@@ -120,7 +120,7 @@ export const CartContextProvider = ({ children }) => {
                 break;
             }
             case 'DECREASE_CART_QTY': {
-                await axios.patch(`http://localhost:8000/cart`, {
+                await axios.patch(`https://warm-hamlet-04033.herokuapp.com/cart`, {
                     ...payload,
                     qty: payload.qty - 1
                 }).then(response => {
