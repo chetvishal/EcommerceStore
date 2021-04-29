@@ -6,7 +6,7 @@ import './Home.css';
 export const Home = ({ input }) => {
 
     const { state, dispatch } = useDataContext();
-    const { cart , wishList } = state;
+    const { cart, wishList } = state;
     const [sliderVal, setSliderVal] = useState(989);
 
     const handleDropDownChange = (e) => {
@@ -23,11 +23,11 @@ export const Home = ({ input }) => {
 
         const newArr = itemArr.map(item => {
             return {
-                ...item, 
-                inCart: cart.find(cartItem => cartItem._id === item._id ) ? true : false,
-                inWishList: wishList.find(wishItem => wishItem._id === item._id) ? true : false 
+                ...item,
+                inCart: cart.find(cartItem => cartItem._id === item._id) ? true : false,
+                inWishList: wishList.find(wishItem => wishItem._id === item._id) ? true : false
             }
-    })
+        })
         return newArr;
     }
     // console.log("checking inCartAndWishList: ",inCartAndWishList(state.products))
@@ -63,7 +63,7 @@ export const Home = ({ input }) => {
                 {/* SORTING INPUT ELEMENTS */}
 
                 <span className="util-heading-medium">Filters</span>
-                
+
                 <span className="util-heading-small">Sort</span>
                 <span className="drop-down-container filter-element">
                     <label for="sort-price" class="a-native-dropdown">Sort by:</label>
@@ -83,7 +83,7 @@ export const Home = ({ input }) => {
 
                 <span className="util-heading-small">Range</span>
                 <input type="range" min={15} max={989} value={sliderVal} className="slider filter-element" onChange={handleSlider} ></input> ₹{sliderVal}
-                
+
 
                 {/* FILTERING INPUT ELEMENTS */}
                 <span className="util-heading-small">Filter by</span>
@@ -106,7 +106,10 @@ export const Home = ({ input }) => {
             </div>
 
             <div className="products-list">
-                {FilteredData.map(i => i.name.toLowerCase().includes(input.toLowerCase()) && i.price < Number(sliderVal) ? <Card key={i._id} data={i} /> : null)}
+                {FilteredData.map(i =>
+                    i.name.toLowerCase().includes(input.toLowerCase()) &&
+                        i.price < Number(sliderVal) ?
+                        <Card key={i._id} data={i} /> : null)}
             </div>
         </div>
     )
