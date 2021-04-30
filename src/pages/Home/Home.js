@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Card } from '../../components/index';
 import { useDataContext } from '../../context/cartContextProvider';
 import './Home.css';
+import {Loading, Jordans} from '../../assets/index';
+import Load from '../../assets/3.gif';
 
 export const Home = ({ input }) => {
 
@@ -109,10 +111,14 @@ export const Home = ({ input }) => {
             </div>
 
             <div className="products-list">
-                {FilteredData.map(i =>
+                {
+                    FilteredData ? 
+                    FilteredData.map(i =>
                     i.name.toLowerCase().includes(input.toLowerCase()) &&
                         i.price < Number(sliderVal) ?
-                        <Card key={i._id} data={i} /> : null)}
+                        <Card key={i._id} data={i} /> : null) : 
+                        <img src={Load} />
+                }
             </div>
         </div>
     )
