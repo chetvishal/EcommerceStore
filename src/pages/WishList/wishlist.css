@@ -1,10 +1,11 @@
 .wishListComponent {
-    padding: 1rem 5.625rem;
+    /* padding: 1rem 5.625rem; */
 }
 
 .wishList {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    padding: 1rem 5.625rem;
 }
 
 .card-small {
@@ -16,6 +17,11 @@
     text-align: center;
     display:block;
     margin: 1rem;
+}
+
+.wishlist-heading {
+    display: flex;
+    justify-content: center;
 }
 
 @media (max-width: 662px){

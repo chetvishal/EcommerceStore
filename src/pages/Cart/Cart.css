@@ -48,6 +48,11 @@
     cursor:pointer;
 }
 
+.cart-heading {
+    display: flex;
+    justify-content: center;
+}
+
 @media (max-width: 955px) {
     .cart {
         flex-direction: column;

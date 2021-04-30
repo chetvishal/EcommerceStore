@@ -1,13 +1,12 @@
-import { useState } from 'react';
 import { useDataContext } from '../../context/cartContextProvider';
-import { CartCard } from '../../components/Card/CartCard';
+import { CartCard } from '../../components/index';
 import "./Cart.css";
+import { ShoppingCart } from '../../assets/index';
 
 export const Cart = () => {
 
     const { state } = useDataContext();
-    const { cart, products, wishList } = state;
-    const [price, setPrice] = useState(0);
+    const { cart, products } = state;
 
     let cartVal = 0;
 
@@ -24,13 +23,22 @@ export const Cart = () => {
     }
     const cartList = checkItemInCart(products);
     cartVal = cartList.reduce((acc, cur) => {
-        return cur.inCart ? acc + (cur.price * cur.qty) : acc + 0; 
-    },0)
+        return cur.inCart ? acc + (cur.price * cur.qty) : acc + 0;
+    }, 0)
 
 
     return (
         <div className="cartComponent">
-            <span className="util-heading-medium">{state.cart.length ? 'CART' : 'CART IS EMPTY'}</span>
+            <span className="util-heading-medium">{state.cart.length ? 
+                <div className="cart-heading">
+                    CART 
+                    <ShoppingCart style={{width: "2rem", marginLeft: "1rem"}}/>
+                </div> :
+                <div className="cart-heading">
+                    CART IS EMPTY
+                    <ShoppingCart style={{width: "2rem", marginLeft: "1rem"}}/>
+                </div>
+            }</span>
             <div className="cart">
                 <div className="cartList">
                     {cartList.map(i => {

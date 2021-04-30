@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faHeart, faSearch, faHome, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useDataContext } from '../../context/cartContextProvider';
 import { Link } from 'react-router-dom';
+import { Jordans } from '../../assets/index';
 
 export const Navbar = ({ setInput }) => {
 
@@ -19,8 +20,9 @@ export const Navbar = ({ setInput }) => {
                 ref={check}
             />
             <nav class="navbar">
-                <a href="#" class="nav-logo"
-                ><Link to="/">Kicks</Link></a>
+                <Link to="/" class="nav-logo">
+                    <span>sneaker.store</span>
+                </Link>
                 <ul class="nav-list">
                     <li className="search-box">
                         <input type="text" onChange={e => setInput(e.target.value)} className="nav-inputbox" placeholder="Search "

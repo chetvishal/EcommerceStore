@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card } from '../../components/Card/Card';
+import { Card } from '../../components/index';
 import { useDataContext } from '../../context/cartContextProvider';
 import './Home.css';
 
@@ -68,6 +68,9 @@ export const Home = ({ input }) => {
                 <span className="drop-down-container filter-element">
                     <label for="sort-price" class="a-native-dropdown">Sort by:</label>
                     <select name="cars" id="sort-price" onChange={handleDropDownChange}>
+                        <option
+                            value="none"
+                        >Relevance</option>
                         <option
                             value="ascending"
                             onClick={() => dispatch({ type: "SORT", payload: "ascending" })}

@@ -1,6 +1,7 @@
 import { useDataContext } from '../../context/cartContextProvider';
-import { Card } from '../../components/Card/Card';
+import { Card } from '../../components/index';
 import './wishlist.css';
+import {  Heart } from '../../assets/index.js';
 
 export const WishList = () => {
 
@@ -23,7 +24,12 @@ export const WishList = () => {
 
     return (
         <div className="wishListComponent">
-            <span className="util-heading-medium">WISHLIST</span>
+            <span className="util-heading-medium">
+                <div className="wishlist-heading">
+                    WISHLIST
+                    <Heart style={{ width: "2rem", marginLeft: "1rem" }} />
+                </div>
+            </span>
             <div className="wishList">
                 {finalList.map(i => i.inWishList ? <Card key={i._id} data={i} /> : null)}
             </div>

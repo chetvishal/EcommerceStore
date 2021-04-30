@@ -42,9 +42,9 @@ export const CartContextProvider = ({ children }) => {
                     ...payload,
                     qty: 1
                 }).then(response => {
-                    if (response.status == 201) {
+                    if (response.status === 201) {
                         dispatch({ type: 'ADD_TO_CART', payload: response.data.item })
-                        dispatch({ type: 'SET_TOAST', payload: { visible: true, text: "Successfully added" } })
+                        dispatch({ type: 'SET_TOAST', payload: { visible: true, text: "Successfully added to cart" } })
                         removeToast();
                     } else {
                         throw Error
@@ -61,9 +61,9 @@ export const CartContextProvider = ({ children }) => {
                     },
                     data: payload
                 }).then(response => {
-                    if (response.status == 201) {
+                    if (response.status === 201) {
                         dispatch({ type: 'REMOVE_FROM_CART', payload: response.data.item });
-                        dispatch({ type: 'SET_TOAST', payload: { visible: true, text: "Successfully Removed" } })
+                        dispatch({ type: 'SET_TOAST', payload: { visible: true, text: "Successfully Removed from cart" } })
                         removeToast();
                     } else {
                         throw Error
@@ -75,7 +75,7 @@ export const CartContextProvider = ({ children }) => {
                 await axios.post('https://warm-hamlet-04033.herokuapp.com/wishlist', {
                     ...payload
                 }).then(response => {
-                    if (response.status == 201) {
+                    if (response.status === 201) {
                         dispatch({ type: 'ADD_TO_WISHLIST', payload: response.data.item })
                         dispatch({ type: 'SET_TOAST', payload: { visible: true, text: "Successfully Added to Wishlist" } })
                         removeToast();
@@ -94,7 +94,7 @@ export const CartContextProvider = ({ children }) => {
                     },
                     data: payload
                 }).then(response => {
-                    if (response.status == 201) {
+                    if (response.status === 201) {
                         dispatch({ type: 'REMOVE_FROM_WISHLIST', payload: response.data.item });
                         dispatch({ type: 'SET_TOAST', payload: { visible: true, text: "Successfully Removed from Wishlist" } })
                         removeToast();
@@ -109,7 +109,7 @@ export const CartContextProvider = ({ children }) => {
                     ...payload,
                     qty: payload.qty + 1
                 }).then(response => {
-                    if (response.status == 201) {
+                    if (response.status === 201) {
                         dispatch({ type: 'INCREASE_CART_QTY', payload: response.data.item });
                         dispatch({ type: 'SET_TOAST', payload: { visible: true, text: "Successfully increased quantity" } })
                         removeToast();
@@ -124,7 +124,7 @@ export const CartContextProvider = ({ children }) => {
                     ...payload,
                     qty: payload.qty - 1
                 }).then(response => {
-                    if (response.status == 201) {
+                    if (response.status === 201) {
                         // console.log("response for decreasing cart quantity: ", response)
                         dispatch({ type: 'DECREASE_CART_QTY', payload: response.data.item });
                         dispatch({ type: 'SET_TOAST', payload: { visible: true, text: "Successfully decreased quantity" } })
