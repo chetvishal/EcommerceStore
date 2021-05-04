@@ -37,8 +37,6 @@ export const Cart = () => {
 
     return (
         <div className="cartComponent">
-            <button onClick={() => console.log("cart: ", cart)}>cart</button>
-            <button onClick={() => console.log("wishlist: ", wishList)}>wishlist</button>
             <span className="util-heading-medium">{state.cart.length ? 
                 <div className="cart-heading">
                     CART 
