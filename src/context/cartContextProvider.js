@@ -43,6 +43,7 @@ export const CartContextProvider = ({ children }) => {
                     qty: 1
                 }).then(response => {
                     if (response.status === 201) {
+                        console.log("from add to cart: ", response.data.data)
                         dispatch({ type: 'ADD_TO_CART', payload: response.data.item })
                         dispatch({ type: 'SET_TOAST', payload: { visible: true, text: "Successfully added to cart" } })
                         removeToast();

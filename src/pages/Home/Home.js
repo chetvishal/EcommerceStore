@@ -26,8 +26,8 @@ export const Home = ({ input }) => {
         const newArr = itemArr.map(item => {
             return {
                 ...item,
-                inCart: cart.find(cartItem => cartItem._id === item._id) ? true : false,
-                inWishList: wishList.find(wishItem => wishItem._id === item._id) ? true : false
+                inCart: cart.find(cartItem => cartItem._id._id === item._id) ? true : false,
+                inWishList: wishList.find(wishItem => wishItem._id._id === item._id) ? true : false
             }
         })
         return newArr;

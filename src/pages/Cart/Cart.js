@@ -6,29 +6,39 @@ import { ShoppingCart } from '../../assets/index';
 export const Cart = () => {
 
     const { state } = useDataContext();
-    const { cart, products } = state;
+    const { cart, products, wishList } = state;
 
-    let cartVal = 0;
+    // let cartVal = 0;
 
-    const checkItemInCart = (itemArr) => {
-        return itemArr.map(item => {
-            const findItem = cart.find(cartItem => cartItem._id === item._id)
-            return findItem ?
-                {
-                    ...item,
-                    inCart: true,
-                    qty: findItem.qty
-                } : item;
-        })
-    }
-    const cartList = checkItemInCart(products);
-    cartVal = cartList.reduce((acc, cur) => {
-        return cur.inCart ? acc + (cur.price * cur.qty) : acc + 0;
+    // const checkItemInCart = (itemArr) => {
+    //     return itemArr.map(item => {
+    //         const findItem = cart.find(cartItem => cartItem._id._id === item._id)
+    //         // console.log("findItem: ",findItem)
+    //         return findItem ?
+    //             {
+    //                 ...item,
+    //                 inCart: true,
+    //                 qty: findItem.qty
+    //             } : item;
+    //     })
+    // }
+    // const cartList = checkItemInCart(products);
+    // cartVal = cartList.reduce((acc, cur) => {
+    //     return cur.inCart ? acc + (cur.price * cur.qty) : acc + 0;
+    // }, 0)
+
+    const cartVal2 = cart.reduce((acc, cur) => {
+        console.log("cur price: ", cur._id.price, "cur qty: ", cur.qty)
+        return Number(acc) + Number(cur._id.price) * Number(cur.qty)
     }, 0)
+
+    console.log("cartVal2: ", cartVal2);
 
 
     return (
         <div className="cartComponent">
+            <button onClick={() => console.log("cart: ", cart)}>cart</button>
+            <button onClick={() => console.log("wishlist: ", wishList)}>wishlist</button>
             <span className="util-heading-medium">{state.cart.length ? 
                 <div className="cart-heading">
                     CART 
@@ -41,15 +51,18 @@ export const Cart = () => {
             }</span>
             <div className="cart">
                 <div className="cartList">
-                    {cartList.map(i => {
-                        return i.inCart ? <CartCard key={i._id} data={i} /> : null
+                    {cart.map(i => {
+                        {/* <CartCard key={i._id} data={i} /> */}
+                        {/* if(i.inCart) console.log("inCart : ", i) */}
+                        {/* return i.inCart ? <CartCard key={i._id} data={i} /> : null */}
+                        return <CartCard key={i._id} data={i} />
                     })}
                 </div>
                 <div className="cartDetails" style={{ display: state.cart.length ? 'block' : 'none' }}>
                     <div className="cartDetailCard">
                         <div className="cartDetailSection">
                             <span className="cart-detail-heading">Total Price ({state.cart.length} items)</span>
-                            <span className="cart-detail-value">₹{cartVal}</span>
+                            <span className="cart-detail-value">₹{cartVal2}</span>
                         </div>
                         <div className="cartDetailSection">
                             <span className="cart-detail-heading">Delivery Charges</span>
@@ -58,7 +71,7 @@ export const Cart = () => {
                         <hr />
                         <div className="cartDetailSection">
                             <span className="cart-detail-heading">Grand Total</span>
-                            <span className="cart-detail-value">₹{cartVal}</span>
+                            <span className="cart-detail-value">₹{cartVal2}</span>
                         </div>
                         <button className="order-btn">Place Order</button>
                     </div>

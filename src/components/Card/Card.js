@@ -6,7 +6,7 @@ import { useDataContext } from '../../context/cartContextProvider';
 import { Link } from 'react-router-dom';
 export const Card = (props) => {
 
-    // console.log(props)
+    console.log(props)
 
     const { dispatch, updateServer } = useDataContext();
 

@@ -1,7 +1,7 @@
 import { useDataContext } from '../../context/cartContextProvider';
 import { Card } from '../../components/index';
 import './wishlist.css';
-import {  Heart } from '../../assets/index.js';
+import { Heart } from '../../assets/index.js';
 
 export const WishList = () => {
 
@@ -13,14 +13,23 @@ export const WishList = () => {
         const newArr = itemArr.map(item => {
             return {
                 ...item,
-                inCart: cart.find(cartItem => cartItem._id === item._id) ? true : false,
-                inWishList: wishList.find(wishItem => wishItem._id === item._id) ? true : false
+                inCart: cart.find(cartItem => cartItem._id._id === item._id) ? true : false,
+                inWishList: wishList.find(wishItem => wishItem._id._id === item._id) ? true : false
             }
         })
         return newArr;
     }
 
+    const newList = wishList.map(item => {
+        return {
+            ...item,
+            inWishList: true,
+            inCart: cart.find(cartItem => cartItem._id._id === item._id) ? true : false
+        }
+    })
     const finalList = inCartAndWishList(products)
+    console.log("finalList: ", finalList);
+    console.log("newList: ", newList);
 
     return (
         <div className="wishListComponent">
@@ -31,7 +40,11 @@ export const WishList = () => {
                 </div>
             </span>
             <div className="wishList">
-                {finalList.map(i => i.inWishList ? <Card key={i._id} data={i} /> : null)}
+                {newList.map(i => {
+                    const data = { ...i._id, inWishList: i.inWishList, inCart: i.inCart }
+                    console.log("data from: ", data)
+                    return i.inWishList ? <Card key={i._id} data={{ ...i._id, inWishList: i.inWishList, inCart: i.inCart }} /> : null
+                })}
             </div>
         </div>
     )
