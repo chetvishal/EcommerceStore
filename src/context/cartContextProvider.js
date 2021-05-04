@@ -73,7 +73,7 @@ export const CartContextProvider = ({ children }) => {
                 break;
             }
             case 'ADD_TO_WISHLIST': {
-                await axios.post('https://stark-sierra-40682.herokuapp.com//wishlist', {
+                await axios.post('https://stark-sierra-40682.herokuapp.com/wishlist', {
                     ...payload
                 }).then(response => {
                     if (response.status === 201) {

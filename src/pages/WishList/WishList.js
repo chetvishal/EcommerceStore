@@ -24,7 +24,7 @@ export const WishList = () => {
         return {
             ...item,
             inWishList: true,
-            inCart: cart.find(cartItem => cartItem._id._id === item._id) ? true : false
+            inCart: cart.find(cartItem => cartItem._id._id === item._id._id) ? true : false,
         }
     })
     const finalList = inCartAndWishList(products)
